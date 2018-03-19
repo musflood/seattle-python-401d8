@@ -32,3 +32,6 @@
 - [Beginning Test-Driven Development in Python](https://code.tutsplus.com/tutorials/beginning-test-driven-development-in-python--net-30137)
 - [Unit Testing & Test-Driven Development](http://python-3-patterns-idioms-test.readthedocs.io/en/latest/UnitTesting.html)
 - [PyFormat: Old vs New style String Formatting](https://pyformat.info/)
+- Read: [Understanding Big O](http://computationaltales.blogspot.com/2011/04/understanding-big-o-notation-and.html)
+- Read: [Beginners Guide to Big O](https://rob-bell.net/2009/06/a-beginners-guide-to-big-o-notation/)
+- Listen: [Season 1, Episode 6, "A friendly intro to Big O Notation" ](https://www.codenewbie.org/basecs)
