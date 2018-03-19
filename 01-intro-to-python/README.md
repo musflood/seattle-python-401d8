@@ -1,5 +1,20 @@
 # ![cf](http://i.imgur.com/7v5ASc8.png) Class 01: Intro to Python
 
+## Daily Plan
+- Notes:
+    - Anything top of mind?
+
+- Kick-off: 9-1030a
+- Co-op Data Structures and Algorithms Intro: 1045-1130a
+- Lunch: 11:30a-12:30a
+- Dive into Python!
+    - Course Overview
+    - Review environmental setups
+    - What do you know already? What are commonalities across languages?
+    - Basic scripting and I/O interface
+- Lab Preview
+
+
 ## Learning Objectives
 
 - Students will have one of the newer versions of Python on their computers for use
@@ -24,7 +39,7 @@
 [Command-line scripts and user input]: ./notes/user_input.md
 
 ## Resources
-Read: [Pain and Suffering](https://codefellows.github.io/sea-python-401d7/readings/pain_suffering.html)
+Read: [Pain and Suffering](./notes/pain_suffering.md)
 Watch: [Names and Values in Python](https://www.youtube.com/watch?v=_AEJHKGk9ns)
 
 Ensure that you've completed the [401 Python Pre-work](https://github.com/codefellows/code-401-Python-prework)
