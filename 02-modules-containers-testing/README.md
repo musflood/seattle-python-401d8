@@ -26,11 +26,11 @@
 
 ## Resources
 
-- Google for Education: [Python Lists](https://developers.google.com/edu/python/lists)
-- Google for Education: [Python Strings](https://developers.google.com/edu/python/strings)
-- [Pytest Documentation](https://docs.pytest.org/en/latest/)
-- [Beginning Test-Driven Development in Python](https://code.tutsplus.com/tutorials/beginning-test-driven-development-in-python--net-30137)
-- [Unit Testing & Test-Driven Development](http://python-3-patterns-idioms-test.readthedocs.io/en/latest/UnitTesting.html)
+- Skim: [Python Lists](https://developers.google.com/edu/python/lists)
+- Skim: [Python Strings](https://developers.google.com/edu/python/strings)
+- SUPER-HIGH-LEVEL-Skim: [Pytest Documentation](https://docs.pytest.org/en/latest/)
+- Read: [Beginning Test-Driven Development in Python](https://code.tutsplus.com/tutorials/beginning-test-driven-development-in-python--net-30137)
+- Read: [Unit Testing & Test-Driven Development](http://python-3-patterns-idioms-test.readthedocs.io/en/latest/UnitTesting.html)
 - [PyFormat: Old vs New style String Formatting](https://pyformat.info/)
 - Read: [Understanding Big O](http://computationaltales.blogspot.com/2011/04/understanding-big-o-notation-and.html)
 - Read: [Beginners Guide to Big O](https://rob-bell.net/2009/06/a-beginners-guide-to-big-o-notation/)
