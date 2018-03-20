@@ -1,6 +1,9 @@
 
 # Created by https://www.gitignore.io/api/venv,pydev,python,jupyternotebook
 
+.vscode
+.DS_Store
+
 ### JupyterNotebook ###
 .ipynb_checkpoints
 */.ipynb_checkpoints/*
