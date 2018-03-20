@@ -51,7 +51,7 @@ Total Due                           $754.23
 *******************************************
 ```
 - Every order should get a universally unique identifier. Consider using the [uuid](https://docs.python.org/3/library/uuid.html#uuid.uuid4) package
-- In the `order` printout you must include sales tax (9.6% in Seattle as of 2018) in the final total (round up to 2 decimal places)
+- In the `order` printout you must include sales tax (10.1% in Seattle as of 2018) in the final total (round up to 2 decimal places)
 - In the `order` printout, all of the costs should be right-justified, and all of the item names should be left-justified
 - If the user types `menu`, the entire menu is printed to the console
 - If the user types the name of any of your categories, the items in that category should be printed to the console

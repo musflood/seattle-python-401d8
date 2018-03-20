@@ -1,5 +1,3 @@
-
-
 def foo():
     print('I am not in the conditional')
 

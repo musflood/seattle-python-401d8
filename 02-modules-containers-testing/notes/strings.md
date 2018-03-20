@@ -32,7 +32,7 @@ new_str
 Strings can also be accessed as an iterable, using the sub-syntax (square brackets).
 ```python
 str = 'The quick brown fox.'
-str[0:8]  # Qualifies the 1st to the 9th characters in the str using 0-indexing
+str[0:8]  # Qualifies the 1st (inclusive) to the 9th (exclusive) characters in the str using 0-indexing
 # 'The quic'
 str[8:-1]
 # 'k brown fo'

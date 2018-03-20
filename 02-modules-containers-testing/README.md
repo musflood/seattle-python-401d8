@@ -5,11 +5,12 @@
     - Introductions!!
     - Anything top of mind?
 
+- Big-O: _should we review a bit?_
 - Code Review
 - Debugging... we need to improve your life a little more!
-- Containers: _more about lists, dicts, tuples, et al_
 - Test Driven Development _Red, Green, Refactor!!_
 - Modules: _constructing apps with modularity_
+- Containers: _more about lists, dicts, tuples, sets_
 - Lab Preview
 
 
