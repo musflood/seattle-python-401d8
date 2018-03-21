@@ -3,9 +3,12 @@
 ## Daily Plan
 - Notes:
     - Anything top of mind
+    - Collaboration: Please do!
+    - _We forgot to cover the Debugger!_
+    - Dirs/Filenames/Function Names...
+        - _Lets all agree that lowercase and underscores are best! Here's why..._
 
 - Code Review
-- _We forgot to cover the Debugger!_
 - Handling errors in Python
 - Reading and writing files
 - Packaging: _Learn to write your own installable packages!_
