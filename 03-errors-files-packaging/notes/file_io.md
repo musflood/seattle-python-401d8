@@ -60,7 +60,7 @@ While reading file contents is a handy way to get data from a file system, it's 
 # `text.txt` does not currently exist in this example, and will be created.
 with open('text.txt', 'w') as f:
     f.write('Hello world! I was just written to the file\n')
-f.close()  # It's always a good practice to explicitly `close()` the file when operations are complete.
+# You do not have to explicitely close the stream when using `with`.
 ```
 ```txt
 'Hello world! I was just written to the file\n'
