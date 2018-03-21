@@ -6,7 +6,7 @@
     - Pre-work.
 
 - Kick-off: 9-1030a
-- Co-op Data Structures and Algorithms Intro: 1045-1130a
+- Co-op Data Structures and Algorithms Intro: 1045-1115a
 
 - Lunch 1200p-100p
 

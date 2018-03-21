@@ -1,5 +1,15 @@
 # ![cf](http://i.imgur.com/7v5ASc8.png) Class 03: Errors, Files, and Packaging
 
+## Daily Plan
+- Notes:
+    - Anything top of mind
+
+- Code Review
+- _We forgot to cover the Debugger!_
+- Handling errors in Python
+- Reading and writing files
+- Packaging: _Learn to write your own installable packages!_
+
 ## Learning Objectives
 
 - Students will learn about how Python throws and displays errors
@@ -19,4 +29,6 @@
 [Creating Your Own Python Package]: ./notes/packaging.md
 
 ## Resources
-- [Python Packaging User Guide - Tutorial](https://packaging.python.org/tutorials/distributing-packages/)
+- Read: [Python Packaging User Guide - Tutorial](https://packaging.python.org/tutorials/distributing-packages/)
+- Read: [Exception Handling in Python](http://www.pythonforbeginners.com/error-handling/exception-handling-in-python/)
+- Skim: [Reading and Writing Files](https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files)
