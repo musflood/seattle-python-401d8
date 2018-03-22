@@ -3,7 +3,6 @@
 ## Daily Plan
 - Notes:
     - Anything top of mind?
-    -
 
 - Code Review & Packaging! _carry-over from yesterday_
 - Functional Programming
