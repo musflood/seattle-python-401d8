@@ -59,16 +59,13 @@ class Person:
 
 
 class Employee(Person):
-    def __init__(self, first_name, last_name, employee_id):
-        super().__init__(self, first_name, last_name)
-        # The following line is Python 2, while the above line note including the super class is a Python 3 only syntax.
+    def __init__(self, first_name, last_name):
+        super().__init__(first_name, last_name)
+        # The following line comment is Python 2, while the above line including the super class is a Python 3 only syntax.
         # super(Person, self).__init__(self, first_name, last_name)
-        self.eid = employee_id
 
-    def GetEmployeeInfo(self):
+        self.eid = uuid4()
+
+    def __str__(self):
         return '{} {}, #{}'.format(self.first, self.last, self.eid)
-
-
-susan = Person('Susan', 'Malarky')
-rachael = Employee('Rachael', 'Wagner', 1138)
 ```
