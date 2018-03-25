@@ -20,5 +20,6 @@
 [Working with Pandas]: ./notes/pandas.md
 
 ## Resources
-- [Using NumPy's loadtxt method](https://scipython.com/book/chapter-6-numpy/examples/using-numpys-loadtxt-method/)
-- [Using NumPy to Read In Files](https://www.dataquest.io/blog/numpy-tutorial-python/)
+- Read: [What is a Jupyter Notebook](https://jupyter-notebook-beginner-guide.readthedocs.io/en/latest/what_is_jupyter.html)
+- Read: [Using NumPy's loadtxt method](https://scipython.com/book/chapter-6-numpy/examples/using-numpys-loadtxt-method/)
+- Read: [Using NumPy to Read In Files](https://www.dataquest.io/blog/numpy-tutorial-python/)
