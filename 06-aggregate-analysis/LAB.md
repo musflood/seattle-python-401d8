@@ -28,7 +28,6 @@ Sign up for a Kaggle account (if you don't already have one).
         - Provide a secondary output showing 'about' ten games surrounding the median sales output
     1. For the top-selling game of all time, how many standard deviations above/below the mean are its sales for North America?
     1. The Nintendo Wii seems to have outdone itself with games. How does its average number of sales compare with all of the other platforms?
-    1. For the top-selling game of all time, how many standard deviations above/below the mean are its sales for North America?
     1. Come up with 3 more questions that can be answered with this data set.
 
 - In the `bike-stats` notebook, answer the following questions/do the following tasks:
