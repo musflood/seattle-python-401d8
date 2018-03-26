@@ -1,4 +1,4 @@
-# ![cf](http://i.imgur.com/7v5ASc8.png) Class 07: Pandas and Probability
+# ![cf](http://i.imgur.com/7v5ASc8.png) Class 07: Visualizations
 
 ## Learning Objectives
 
@@ -9,15 +9,9 @@
 ## Outline
 
 - Code Review
-- [Basic Probability]
-- [Data Distributions]
-- [Creating Hypotheses]
 - [Visualizing Data with Matplotlib]
 
 <!-- links -->
-[Basic Probability]: ./notes/not_written.md
-[Data Distributions]: ./notes/not_written.md
-[Creating Hypotheses]: ./notes/not_written.md
 [Visualizing Data with Matplotlib]: ./notes/visualizing.md
 
 
