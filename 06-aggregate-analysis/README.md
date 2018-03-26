@@ -1,5 +1,21 @@
 # ![cf](http://i.imgur.com/7v5ASc8.png) Class 06: Aggregate Analysis
 
+## Daily Plan
+- Notes:
+    - Anything top of mind?
+    - Survey feedback
+    - What's happening this week?
+    - Anaconda... Just dont.
+    - 1p today - in Babbage.
+
+- Code Review
+- Data Science / Analysis: _What is it?_
+    - Review the process
+- Common Tools of the Trade
+    - NumPy, Pandas, and Notebooks
+- Working with data sets & where to find them
+- Lab Preview
+
 ## Learning Objectives
 
 - Students will learn a basic understanding of the use cases and capabilities of the Python NumPy Package.
