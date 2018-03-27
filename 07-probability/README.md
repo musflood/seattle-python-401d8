@@ -1,5 +1,15 @@
 # ![cf](http://i.imgur.com/7v5ASc8.png) Class 07: Visualizations
 
+## Daily Plan
+- Notes:
+    - Anything top of mind?
+
+- Code Review
+- Probability & Statistics
+- Visualizations
+    - Pandas / MatplotLib / Seaborn / Bokeh
+- Lab Preview
+
 ## Learning Objectives
 
 - Students will be able to aggregate data analytics and visualizations from a data set or sets.
