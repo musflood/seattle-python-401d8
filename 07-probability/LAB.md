@@ -23,7 +23,7 @@ Today we’ll work with two data sets: the [IMDB 5000 Movies Dataset](https://da
     1. What's the probability that a movie directed by Clint Eastwood will gross under budget?
     1. What's the probability that a movie generally grossed more than its budget?
     1. What's the probability that a movie grossed over the average gross of this data set?
-    1. For ratings we'll consider a movie with at least a 6/10 to be worth renting, if not seeing in theaters. A **false positive** would be a movie that was highly-rated but did poorly in the box office (gross < budget). A **false negative** would be a movie that was poorly-rated but did great in the box office (gross < budget).
+    1. For ratings we'll consider a movie with at least a 6/10 to be worth renting, if not seeing in theaters. A **false positive** would be a movie that was highly-rated but did poorly in the box office (gross < budget). A **false negative** would be a movie that was poorly-rated but did great in the box office (gross > budget).
     1. In the IMDB dataset, what are the false positive and false negative rates? Can you provide some examples of each?
     1. If I’m a production studio exec and Tom Hanks is starring in my movie but I’m feeling uncertain about whether we should keep him (will he make as much money as we want?), tell me should I keep him in the movie or switch him out for Harrison Ford?
     1. Same as above, but I’m judging on the ratings of the movie instead of the gross/budget.
