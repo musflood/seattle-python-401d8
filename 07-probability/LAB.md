@@ -19,7 +19,7 @@ Today we’ll work with two data sets: the [IMDB 5000 Movies Dataset](https://da
 - In `imdb-notebook` answer/fulfill the following:
 **Find an opportunity within your dataset to generate _at least four_ meaningful visuals. For example, use visuals to illustrate a conclusion to one of your questions!**
     1. What's the probability that a movie was longer than an hour and a half? Two hours?
-    1. What's the probability that a movie was directed by Stephen Spielberg?
+    1. What's the probability that a movie was directed by Steven Spielberg?
     1. What's the probability that a movie directed by Clint Eastwood will gross under budget?
     1. What's the probability that a movie generally grossed more than its budget?
     1. What's the probability that a movie grossed over the average gross of this data set?
