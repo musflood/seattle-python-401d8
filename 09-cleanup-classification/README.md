@@ -1,18 +1,21 @@
-# ![cf](http://i.imgur.com/7v5ASc8.png) Class 09: Title
+# ![cf](http://i.imgur.com/7v5ASc8.png) Class 09: Classifications
 
 ## Learning Objectives
 
-- Students will ...
+- Students will demonstrate the purpose of unsupervised classification
+- Students will understand the use of k-means algorithm
+- Students will understand the pros and cons of k-NN algorithm
+- Students will understand the pitfalls of these algorithms and means of avoiding them
 
 ## Outline
 
 - Code Review
-- []
-- []
+- Classifications
+- k-Means
+- k-Nearest Neighbor
 
 <!-- links -->
-[]: ./notes/.md
-[]: ./notes/.md
 
 ## Resources
-- []()
+- Skim: [Clustering](https://en.wikipedia.org/wiki/Cluster_analysis)
+- Read: [Drawbacks of K-Means Clustering](https://stats.stackexchange.com/questions/133656/how-to-understand-the-drawbacks-of-k-means/133841#133841)
