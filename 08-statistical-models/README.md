@@ -1,5 +1,15 @@
 # ![cf](http://i.imgur.com/7v5ASc8.png) Class 08: Regressions
 
+## Daily Plan
+- Notes:
+    - Introductions!
+    - Anything top of mind?
+
+- Code Review
+- Intro to Machine Learning
+- Regressions
+- Lab Preview
+
 ## Learning Objectives
 
 - Students will understand the purpose and use of linear and polynomial regressions.
