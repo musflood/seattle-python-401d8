@@ -3,6 +3,8 @@
 ## Learning Objectives
 
 - Students will whiteboard each other to understand both sides of the "coding interview" process
+- Students will understand the basic use case and implementation of a stack data structure
+- Students will understand the basic use case and implementation of a queue data structure
 
 ## Outline
 - Code Review
