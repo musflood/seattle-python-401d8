@@ -16,6 +16,5 @@
 [Queue]: ./notes/queue.md
 
 ## Resources
-Wireframe planning:
 - [An Introduction to Stacks](https://www.geeksforgeeks.org/stack-data-structure/)
 - [An Introduction to Queues](https://www.geeksforgeeks.org/queue-data-structure/)
