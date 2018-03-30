@@ -11,7 +11,7 @@
 - Create two files _in each_ called `node.py` and `stack.py`, `queue.py` respectively
 - In `node.py`:
     - Create a Class for a `Node` which is aware of the value as `val` and next as `_next`
-        - Ensure that you have a `__str__` method defined to return the value of the node when printed
+        - Ensure that you have a `__repr__` method defined to return the value of the node when printed
 
 - In `stack.py`:
     - Create a Class for a `Stack` which creates an empty Stack when instantiated
