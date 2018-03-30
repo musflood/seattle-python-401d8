@@ -1,5 +1,13 @@
 # ![cf](http://i.imgur.com/7v5ASc8.png) Class 10: Stacks and Queues
 
+## Daily Plan
+- Notes:
+    - Anything top of mind?
+
+- Code Review
+- Stacks & Queues
+- Lab Preview
+
 ## Learning Objectives
 
 - Students will whiteboard each other to understand both sides of the "coding interview" process

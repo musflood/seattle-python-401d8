@@ -77,11 +77,7 @@ You **do not** need to include JavaScript/jQuery functionality in your scaffold,
 
 
 ### Submission
-1. Create a pull request from your `templates` branch to your `master` branch.
-2. In your open pull request, leave as a comment [a checklist](https://github.com/blog/1825-task-lists-in-all-markdown-documents) of the specifications, with the actual specifications you completed checked off.
-3. Copy the link to your open pull request and paste it into the corresponding Canvas assignment.
-4. Leave any comments you may have about the assignment in the comments box. This includes any difficulties you may have had with the assignment.
-5. Merge `templates` into `master`
+1. There is no submission for this assignment. Please have it ready to work with by Weds.
 
 ---
 
