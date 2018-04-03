@@ -1,11 +1,5 @@
 # ![cf](http://i.imgur.com/7v5ASc8.png) Class 12: Hypertext Transfer Protocol
 
-## Pop Quiz!
-- Close your laptops, and pull out a piece of paper.
-- Take 5 minutes and diagram 'How the web works'.
-- Take another 5 minutes with your neighbor, and review each other's perspective.
-- We'll discuss this as a class afterward.
-
 ## Learning Objectives
 
 - Students will gain an understanding of the more common protocols in use by the internet at large

@@ -51,3 +51,67 @@ Connection: close
 
 {"id":"1234123412341324","title":"kata","content":"get 100 points on hacker rank"}
 ```
+
+
+## Python's HTTP Module
+
+
+Let's take a quick look at how easily we can create a simple server using Python 3s built-in HTTP module.
+```sh
+# Server shell session
+$ python3 -m http.server 8000 --bind 127.0.0.1
+
+Serving HTTP on 127.0.0.1 port 8000 (http://127.0.0.1:8000/) ...
+```
+Notice the similarities in establishing a server instance and binding an endpoint (address, port) to that instance with the TCP socket server we created yesterday. We're working on an abstraction layer at this point, and while still lower level than a framework like Django or Pyramid, this is quite a bit easier than having to manually define and configure socket connections.
+
+
+Now that we have an active server running in the shell, unconfigured as it is, we have the ability to make a simple GET request to that endpoint, which will return a HTTP response with a status code of `200 OK`.
+
+_Note: If you examine the results of that HTML response, you'll notice that a valid request will provide a listing of the current working directory where the server is running. *That is a problem!* You own protecting your server from such access, so this is something we would validate and account for when building a server from scratch with the HTTP module._
+
+```sh
+# Client shell session
+
+# This is our HTTPie request. HTTPie is an installable CLI tool that allows some nice, simple commands for making http requests in the terminal.
+$ http localhost:8000?key=value
+
+# These are the response headers received from our server.
+HTTP/1.0 200 OK  # Notice that we're operating on an HTTP/1.0 version? That means that this is the only line ACTUALLY required in these headers
+Content-Length: 573  # Content length... self explanatory? This is the length of the body of the response.
+Content-type: text/html; charset=utf-8  # Content type provides a way for the req/res cycle to predetermine the type of data sent and received: i.e. JSON, HTML, Plain text, etc...
+Date: Tue, 03 Apr 2018 01:22:33 GMT  # Datetime stamp
+Server: SimpleHTTP/0.6 Python/3.6.4  # Server process information
+
+# This is the actual body of the request sent back from the server.
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Directory listing for /?key=value</title>
+</head>
+<body>
+<h1>Directory listing for /?key=value</h1>
+<hr>
+<ul>
+<li><a href="FACILITATOR.md">FACILITATOR.md</a></li>
+<li><a href="LAB.md">LAB.md</a></li>
+<li><a href="lecture/">lecture/</a></li>
+<li><a href="notes/">notes/</a></li>
+<li><a href="README.md">README.md</a></li>
+<li><a href="solutions/">solutions/</a></li>
+</ul>
+<hr>
+</body>
+</html>
+```
+After we've run our HTTP request from the 'client shell' we can see that in our 'server shell' there's now a log of that request made to our server!
+```sh
+# Server shell session
+$ python3 -m http.server 8000 --bind 127.0.0.1
+
+Serving HTTP on 127.0.0.1 port 8000 (http://127.0.0.1:8000/) ...
+
+# ...previous output above & server receiving request from client below
+127.0.0.1 - - [02/Apr/2018 18:22:33] "GET /?key=value HTTP/1.1" 200 -
+```
