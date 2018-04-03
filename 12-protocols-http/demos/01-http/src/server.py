@@ -54,9 +54,9 @@ def run_forever():
         print('Starting server on port 3000')
         server.serve_forever()
     except KeyboardInterrupt:
-        # server.shutdown()
-        # server.server_close()
-        sys.exit()
+        server.shutdown()
+        server.server_close()
+        # sys.exit()
 
 
 if __name__ == '__main__':
