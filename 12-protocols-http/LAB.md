@@ -67,7 +67,7 @@ You'll be implementing a socket client that sends a properly-formatted HTTP requ
             }
         ```
     5. Both `GET` and `POST` should handle any paths that are not defined by you, and return with the appropriate `404 Not Found` response and headers.
-    6. Ensure that each of your valid routes are also able to handle a malformed request, which should return a `400 Bad Request` response and headers. For example, a request to `GET /cow` which does not include a query string message is not properly formatted for your API, and should response properly.
+    6. Ensure that each of your valid routes are also able to handle a malformed request, which should return a `400 Bad Request` response and headers. For example, a request to `GET /cow` which includes a query string message that is not properly formatted for your API should response properly.
 
 - In `test_server.py`:
     1. Create a `module` scoped fixture while will run your server on a background thred while the test suite is executing.
