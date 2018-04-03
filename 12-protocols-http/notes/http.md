@@ -54,8 +54,6 @@ Connection: close
 
 
 ## Python's HTTP Module
-
-
 Let's take a quick look at how easily we can create a simple server using Python 3s built-in HTTP module.
 ```sh
 # Server shell session
