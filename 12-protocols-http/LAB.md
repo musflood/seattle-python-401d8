@@ -35,7 +35,8 @@ You'll be implementing a socket client that sends a properly-formatted HTTP requ
         </body>
         </html>
         ```
-    2. `GET /cow?msg=text` - returns a cowpy response which correctly displays a default cow object including the `text` from your query string.
+    2. `GET /cowsay` - returns a generic cowpy response which displays a helpful message to the client about how they can further interact with the API.
+    3. `GET /cow?msg=text` - returns a cowpy response which correctly displays a default cow object including the `text` from your query string.
         ```
         _____________
         < text >
@@ -59,14 +60,14 @@ You'll be implementing a socket client that sends a properly-formatted HTTP requ
                     __/-___-- -__
                     /            _ \
         ```
-    3. `POST /cow msg=text` - returns a cowpy response with a JSON body `{"content": "<cowsay cow>"}`
+    4. `POST /cow msg=text` - returns a cowpy response with a JSON body `{"content": "<cowsay cow>"}`
         ```
             {
                 "content": " _____________ \n< hello world >\n ------------- \n   \\         __------~~-,\n    \\      ,'            ,\n        /               \\\n         /                :\n        |                  '\n        |                  |\n        |                  |\n         |   _--           |\n         _| =-.     .-.   ||\n         o|/o/       _.   |\n         /  ~       \\ |\n       (____\\@)  ___~    |\n          |_===~~~.`    |\n       _______.--~     |\n       \\________       |\n            \\      |\n              __/-___-- -__\n             /            _ \\"
             }
         ```
-    4. Both `GET` and `POST` should handle any paths that are not defined by you, and return with the appropriate `404 Not Found` response and headers.
-    5. Ensure that each of your valid routes are also able to handle a malformed request, which should return a `400 Bad Request` response and headers. For example, a request to `GET /cow` which does not include a query string message is not properly formatted for your API, and should response properly.
+    5. Both `GET` and `POST` should handle any paths that are not defined by you, and return with the appropriate `404 Not Found` response and headers.
+    6. Ensure that each of your valid routes are also able to handle a malformed request, which should return a `400 Bad Request` response and headers. For example, a request to `GET /cow` which does not include a query string message is not properly formatted for your API, and should response properly.
 
 - In `test_server.py`:
     1. Create a `module` scoped fixture while will run your server on a background thred while the test suite is executing.
