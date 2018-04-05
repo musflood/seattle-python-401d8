@@ -2,7 +2,13 @@
 
 {% block content %}
 <h1>Welcome to my list of entries</h1>
+
+{% if rand > 4 %}
 <h2>{{message}}</h2>
+{% else %}
+<h2>You're not going to see me</h2>
+{% endif %}
+
 <ul>
   {% for entry in entries %}
   <li>

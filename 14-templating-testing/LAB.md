@@ -12,7 +12,7 @@ The overall goal will be to allow users to log in, log out, add stocks to their 
 
 - In your `pyramid-stocks` repository create a branch called `class-14-pyramid-templating`
 - Create a `sample_data` directory inside of your application's root. Within this directory, create an `__init__.py` file that defines a variable called `MOCK_DATA`.
-    + `MOCK_DATA` will be a list of at least dictionaries.
+    + `MOCK_DATA` will be a list of at least 10 dictionaries.
     + Each dictionary within the above list will be of the format:
         ```python
         # You're welcome to use this as your first record!
@@ -35,7 +35,9 @@ The overall goal will be to allow users to log in, log out, add stocks to their 
 - Your `/portfolio/{symbol}` route should populate the data for the page based on the data from `sample_data/__init__.py`
 - `/auth`, when submitted, should redirect the user to the portfolio page. No need to worry about distinguishing your forms on the page at this point. `POST /auth` for your signup and `GET /auth` for your signin, are sufficient.
     - You do not need to collect the form data or authenticate the user, yet, rather just ensure that you are able to receive the request on the server, and redirect the client to the portfolio page.
-- Add a new route `GET /stock` - should use `requests` to find information online about the given ticker symbol and add it to the data in `MOCK_DATA`. These additions are in-memory, so you do not need to write them to the file directly; they will only persist while the app is live for any one session.
+
+### Stretch Goal
+- `GET /stock` - should use `requests` to find information online about the given ticker symbol and add it to the data in `MOCK_DATA`. These additions are in-memory, so you do not need to write them to the file directly; they will only persist while the app is live for any one session.
     - You will be using a free API from [IEX TRADING](https://iextrading.com/developer/docs), which does not require the use of an API key at this point.
     - We are specifically interested in the Company Info and the Time Series info, both of which are accessible via an API call using a companies Stock Symbol.
 
