@@ -1,5 +1,15 @@
 # ![cf](http://i.imgur.com/7v5ASc8.png) Class 14: Pyramid - Templating, Testing, and Flow Control
 
+## Daily Plan
+- Notes:
+    - Anything top of mind?
+
+- Code Review
+- Jinja2 Templates & Inheritance
+- View Controller Logic: _How do we send data to our Templates?_
+- Unit Testing View Controllers
+- Lab Preview
+
 ## Learning Objectives
 
 - Students will deepen their understanding of server-side templating and rendering documents from a set of mock data.
