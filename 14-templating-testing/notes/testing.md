@@ -5,9 +5,9 @@ Thus far we have written a bit of code for handling HTTP routing and serving dat
 
 When it comes to testing your Pyramid app (as well as other apps in general), you need to not only perform unit tests for individual pieces of functionality. You also need to test for how things perform when in practice. For example, if your app sends an email, you need to check that the email is actually sent.
 
-However, for today, we’ll focus only on unit tests, refactoring and building out more about functional tests tomorrow.
+However, for today, we’ll focus only on unit tests, refactoring and building out more about functional tests later.
 
-Setting Up a Test for a View
+### Setting Up a Test for a View
 Our scaffold provided for us a tests.py file complete with some basic tests. However, since we won’t be using unittest for our test suite we’ll gut it completely. In its place, write:
 ```python
 # in tests.py
@@ -18,21 +18,21 @@ from pyramid.response import Response
 
 def test_home_view_returns_response():
     """Home view returns a Response object."""
-    from expense_tracker.views.default import home_page
+    from demo_app.views.default import home_page
     request = testing.DummyRequest()
     response = home_page(request)
     assert isinstance(response, Response)
 
 def test_home_view_is_good():
     """Home view response has a status 200 OK."""
-    from expense_tracker.views.default import home_page
+    from demo_app.views.default import home_page
     request = testing.DummyRequest()
     response = home_page(request)
     assert response.status_code == 200
 
 def test_home_view_returns_proper_content():
     """Home view response has file content."""
-    from expense_tracker.views.default import home_page
+    from demo_app.views.default import home_page
     request = testing.DummyRequest()
     response = home_page(request)
     assert "This is text in an external file" in response.text
@@ -48,7 +48,7 @@ from pyramid.response import Response
 
 def test_home_view_returns_response():
     """Home view returns a Response object."""
-    from expense_tracker.views.default import home_page
+    from demo_app.views.default import home_page
     request = testing.DummyRequest()
     response = home_page(request)
     assert isinstance(response, Response)
@@ -57,7 +57,7 @@ Then we check that the request was processed properly, returning a status 200.
 ```python
 def test_home_view_is_good():
     """Home view response has a status 200 OK."""
-    from expense_tracker.views.default import home_page
+    from demo_app.views.default import home_page
     request = testing.DummyRequest()
     response = home_page(request)
     assert response.status_code == 200
@@ -66,7 +66,7 @@ Finally, we test that the actual content of the response matches what we expect.
 ```python
 def test_home_view_returns_proper_content():
     """Home view response has file content."""
-    from expense_tracker.views.default import home_page
+    from demo_app.views.default import home_page
     request = testing.DummyRequest()
     response = home_page(request)
     assert "This is text in an external file" in response.text
@@ -82,7 +82,7 @@ We have .[testing] because we want to install everything in the current director
 
 Now that all is installed, run our tests!
 ```
-(ENV) $ py.test expense_tracker -v
+(ENV) $ py.test demo_app -v
 ```
 The -v flag makes your test output verbose, telling you the name of every test that passes/fails. For less verbose output, use -q.
 

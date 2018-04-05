@@ -4,6 +4,7 @@
 
 - Students will deepen their understanding of server-side templating and rendering documents from a set of mock data.
 - Students will work with the basic patterns of MVC using a web framework in Python
+    - In Python frameworks it is common to see MVC refered to semantically as Model Template View or MTV
 - Students will learn how to configure a test suite for their function-based views in Pyramid
 
 ## Outline
