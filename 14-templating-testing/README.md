@@ -4,14 +4,13 @@
 
 - Students will deepen their understanding of server-side templating and rendering documents from a set of mock data.
 - Students will work with the basic patterns of MVC using a web framework in Python
-    - In Python frameworks it is common to see MVC refered to semantically as Model Template View or MTV
 - Students will learn how to configure a test suite for their function-based views in Pyramid
 
 ## Outline
 
 - Code Review
-- [Pyramid Templating, Testing, and Flow Control]
-- [Accessing the Internet with the Requests Library]
+- [Pyramid Templating]
+- [Pyramid Testing]
 
 <!-- links -->
 [Pyramid Templating]: ./notes/templating.md
@@ -20,3 +19,4 @@
 ## Resources
 - Read: [Adding Tests to your Pyramid App](https://docs.pylonsproject.org/projects/pyramid/en/latest/tutorials/wiki2/tests.html)
 - Skim: [Jinja2 Templates](http://jinja.pocoo.org/docs/2.10/templates/)
+- Skim: [Python's Request Library](http://docs.python-requests.org/en/master/user/quickstart/)
