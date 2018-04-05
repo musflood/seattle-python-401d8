@@ -41,7 +41,7 @@ The overall goal will be to allow users to log in, log out, add stocks to their 
 
 ### Testing
 - Your tests don't need to cover all of Pyramid's functionality, as you didn't write Pyramid yourself. Your tests only need to cover the view functions that you wrote.
-- Write a series of tests while cover your function views and any other functionality that you've specifically defined within the scaffold. This should include both functional tests and unit tests.
+- Write a series of tests which cover your view controllers and any other functionality that you've specifically defined within the scaffold. This should include only unit tests today.
 
 
 ### Submission
