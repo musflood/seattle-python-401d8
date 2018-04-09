@@ -17,7 +17,7 @@ _Note: Students should have some basic familiarity with PostgreSQL and writing r
 [Python and PostgreSQL]: ./notes/postgresql.md
 
 ## Resources
-- Read [SQLAlchemy Overview](http://docs.sqlalchemy.org/en/latest/intro.html)
+- Skim [SQLAlchemy Overview](http://docs.sqlalchemy.org/en/latest/intro.html)
 - Skim [SQLAlchemy: ORM & Core](http://docs.sqlalchemy.org/en/latest/)
 - Skim [SQLAlchemy Cheatsheet](https://www.codementor.io/sheena/understanding-sqlalchemy-cheat-sheet-du107lawl)
 
