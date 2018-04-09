@@ -1,6 +1,17 @@
 # ![cf](http://i.imgur.com/7v5ASc8.png) Class 16: Pyramid - Models and Database Interaction
 
-_Note: Students should have some basic familiarity with PostgreSQL and writing raw SQL queries._
+## Daily Plan
+- Notes:
+    - Anything top of mind?
+    - What's happening this week.
+    - _Note: Students should have some basic familiarity with PostgreSQL and writing raw SQL queries._
+    - Lots of little changes today... please take good notes
+
+- Code Review
+- Review Postgres DBMS & Persistence
+- Working with Postgres in Pyramid: `sqlalchemy` and `psycopg2`
+- SQLAlchemy & Models
+- Lab Preview
 
 ## Learning Objectives
 
