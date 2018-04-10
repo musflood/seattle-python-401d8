@@ -1,5 +1,15 @@
 # ![cf](http://i.imgur.com/7v5ASc8.png) Class 17: Pyramid - Authentication
 
+## Daily Plan
+- Notes:
+    - Anything top of mind?
+    - Asking for help
+
+- Code Review / Testing
+- Auth Overview: Basic/Bearer/OAuth/Session
+- Session Auth Deepdive
+- Lab Preview
+
 ## Learning Objectives
 
 - Students will understand the difference between Authentication and Authorization
