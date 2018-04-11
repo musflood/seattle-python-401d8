@@ -1,5 +1,14 @@
 # ![cf](http://i.imgur.com/7v5ASc8.png) Class 18: Pyramid - Model Relationships
 
+## Daily Plan
+- Notes:
+    - Anything top of mind?
+
+- Code Review
+- Model Relationships & Joins
+- Testing
+- Lab Preview
+
 ## Learning Objectives
 
 - Students will know the four general relationships available in a Relational DBMS
