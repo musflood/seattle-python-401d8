@@ -48,7 +48,7 @@ But we want all of the Python 3.6 goodness we can handle!
 
 Create a document at your repository root named runtime.txt. Within it, write this one line: `python-3.6.1`
 ```sh
-(ENV)learning_journal$ echo "python-3.6.1" > runtime.txt
+(ENV)learning_journal$ echo "python-3.6.4" > runtime.txt
 ```
 Add this file to your git repository and commit. Now your deployment will be in glorious Python 3.6.
 ```sh
@@ -69,11 +69,11 @@ Create the file run in the repository root. Then type the following text into it
 ```sh
 #!/bin/bash
 set -e
-cd learning_journal
+
 python setup.py develop
 python runapp.py
 ```
-This script tells the Heroku server to use the bash shell (`#!/bin/bash`). It says that if any part of the script returns an error, it should exit the script (`set -e`). It then changes directory to the project root. Following that, Heroku installs our application in develop mode (equivalent to running pip install -e . when in the project root). Finally, it executes a Python module called `runapp.py`, which we have to create.
+This script tells the Heroku server to use the bash shell (`#!/bin/bash`). It says that if any part of the script returns an error, it should exit the script (`set -e`). Following that, Heroku installs our application in develop mode (equivalent to running pip install -e . when in the project root). Finally, it executes a Python module called `runapp.py`, which we have to create.
 
 The run file needs to be executable, so that Heroku can run it. We can use the chmod shell command to fix that:
 ```sh
@@ -168,7 +168,7 @@ use = egg:PasteDeploy#prefix
 [pipeline:main]
 pipeline =
     paste_prefix
-    learning_journal
+    main
 ```
 
 Lines 1-2 create a wsgi middleware filter that will detect the https scheme and make that information available to our Pyramid app.
@@ -280,7 +280,9 @@ def main(global_config, **settings):
     """
     if os.environ.get('DATABASE_URL', ''):
         settings["sqlalchemy.url"] = os.environ["DATABASE_URL"]
+
     config = Configurator(settings=settings)
+
     config.include('pyramid_jinja2')
     config.include('.models')
     config.include('.routes')
@@ -291,18 +293,10 @@ Because we should always try to keep code DRY (and prevent future confusion), re
 
 If we invoke `pserve development.ini` and navigate to the site in the browser, everything should show up the same.
 
-We just have to add one more line of code to make deployment smooth. Recall that in order to view the data in your database you have to run that initializedb shell command. You need to do that on Heroku too.
+We just have to add one more line of code to make deployment smooth. Recall that in order to view the data in your database you have to run that initializedb shell command. We need to do something similar to set up the tables in our deployws application.
 
-Why do it manually when you already have a script that’s automatically changing directories, installing your package, and running your app upon deployment? Let’s just add “initializing the database” to that stack of tasks.
+Why do it manually when you already have a script that’s automatically changing directories, installing your package, and running your app upon deployment? Let’s just migrate our pre-existing development database up to the app so we can play!
 ```sh
-# in "run"
-
-#!/bin/bash
-set -e
-cd learning_journal
-python setup.py develop
-initializedb production.ini # <--- add this line
-python runapp.py
+(ENV)learning_journal$ heroku pg:push entries_dev DATABASE_URL --app lj-demo
+                     # heroku <postgres:push> <DB_NAME> <DB_URL> --app <APP_NAME>
 ```
-Now, when we re-deploy to Heroku, we’ll connect to whatever Postgres database they have running for our own site, and initialize our database, tables and all.
-
