@@ -155,7 +155,7 @@ Next, find the section of the file that looks like this:
 # wsgi server configuration
 ###
 
-[server:main]
+[server:learning_journal]
 use = egg:waitress#main
 host = 0.0.0.0
 port = 6543
@@ -168,7 +168,7 @@ use = egg:PasteDeploy#prefix
 [pipeline:main]
 pipeline =
     paste_prefix
-    main
+    learning_journal
 ```
 
 Lines 1-2 create a wsgi middleware filter that will detect the https scheme and make that information available to our Pyramid app.

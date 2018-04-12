@@ -1,5 +1,17 @@
 # ![cf](http://i.imgur.com/7v5ASc8.png) Class 19: Pyramid - Deployment
 
+[*Link to today's GH Repo for Deployment*](https://github.com/codefellows/learning_journal/tree/development)
+
+## Daily Plan
+- Notes:
+    - Anything top of mind?
+    - What's happening tomorrow
+
+- Code Review
+- Continuous Integration with Travis-CI
+- Deployment with Heroku
+- Lab Preview
+
 ## Learning Objectives
 
 - Students will develop an application that can be viewed in an online hosted environment
