@@ -1,9 +1,19 @@
 # ![cf](http://i.imgur.com/7v5ASc8.png) Class 26: Django Imager: Create the Imager Profile
 
+## Daily Plan
+- Notes:
+    - Anything top of mind?
+    - 1p today: No whiteboarding challenge. Getting together with C# group for kary tree lecture.
+
+- Introduction to Django Web Framework
+- Review of MVC (MTV) Architecture and how that fits with Django
+- Setting up a Django App
+- Intro to testing Django
+- Lab Preview
+
 ## Learning Objectives
 - Students will understand how to implement a data model in Django
 - Students will understand what a database migration is and how migrations control the relationship between the database and the app
-- Students will learn about the Binary Search Tree and how it is structured
 - Students will be able to reliably test a Django app
 
 ## Outline

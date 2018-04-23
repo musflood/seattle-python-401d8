@@ -5,7 +5,7 @@ Now it’s time for us to move on to using the current undisputed champion of th
 
 ## Starting a Django Project
 We’ll begin by creating a new virtualenv in which to learn on Django. This one is for a book-lending library, and just for exploring in class. Name it accoringly, and then install Django:
-```sh
+```bash
 $ mkdir django_lender
 $ cd django_lender
 $ python3 -m venv ENV
@@ -22,7 +22,7 @@ Successfully installed Django-1.11 pytz-2017.2
 
 ## `startproject`
 Once Django is installed, we can create a “project” to explore a bit. Django uses the term “project” to refer to the code that will make up one entire website. You always begin work on a Django website by creating a project.
-```sh
+```bash
 (ENV)$ django-admin startproject lending_library
 The startproject command works a bit like the cookiecutter command for Pyramid. It creates a bit of boilerplate code structure to make starting a new site easier. Let’s take a moment to look over the lending_library directory it created.
 
@@ -258,7 +258,7 @@ In [12]:
 ```
 No. Nothing is returned. How did we add a new entry into our system in Pyramid? How did we make the database aware of something and preserve it?
 
-```python 
+```python
 session.add(instance)
 ```
 But not in Django. Remember, here the semantics are based on the instance itself.
@@ -268,6 +268,7 @@ We can call save() on the bob user instance. But we have to create the database 
 In another terminal, we can create our database tables by running a “migration” command on our project. python manage.py migrate takes a look at every registered object that inherits from Model and checks the database to see if that migration has been applied. If it hasn’t it’ll apply the migration, sometimes creating new tables where they’re needed, or updating existing tables to be consistent with changes in the codebase.
 ```bash
 $ source ENV/bin/activate
+(ENV)$ python manage.py makemigrations
 (ENV)$ python manage.py migrate
 Operations to perform:
   Apply all migrations: admin, contenttypes, auth, sessions
