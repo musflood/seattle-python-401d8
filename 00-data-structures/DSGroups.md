@@ -1,4 +1,6 @@
 # Week5 Data Structure Groups
+| Student  1       | Student     2      |
+| ------------- |:-------------:|
 Ramon Mendoza (Python) | Keith Eckert (Python) |
 David Snowberger (Python) | Gene Pieterson (Python) |
 Shannon Tully (Python) | Tiger Hsu (.NET) |
@@ -14,6 +16,8 @@ Andrii Glukhyi (Python) | Patricia Raftery (Python) |
 
 
 ## Mock Interviews Day 29
+| Student  1       | Student     2      |
+| ------------- |:-------------:|
 Jay Adams (Python) | Josh Taylor (.NET) |
 Tyler Fishbone (Python) | Tiger Hsu (.NET) |
 Seokwon Kim (Python) | Shannon Tully (Python) |
