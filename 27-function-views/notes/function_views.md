@@ -49,7 +49,7 @@ directory our `urls.py` file. We set up a static URL there to point to our
 media directory.
 
 Django creates these things called `urlpatterns`. These are basically just
-lists of calls to the `url` function. `url()` comes from `django.conf.urls`
+lists of calls to the `path` function. `path()` comes from `django.urls`
 and it is responsible for wiring together 2 things:
 
   1. The pattern that is being used to match an incoming request.
@@ -60,10 +60,10 @@ Let’s start by pointing at a view though. Let’s start with a new `url`, and
 add a regular expression. We should always use a raw string when doing regex
 to avoid having to escape escapes.
 
-  * `url(r'^$', views.home_view, name='homepage')`
+  * `path('', views.home_view, name='homepage')`
     * This regex matches only a home directory “/”. The “^” and “$” starting and ending the route string signify that. (See regex documentation for more info.)
     * The second argument is a callable item that is the thing that gets executed when the route gets matched. `lending_library.views.home_view` will look in our current directory for a package called views, and look inside there for a `home_view()` function.
-    * A third argument to `url()` is an optional argument called `name` that provides a handle that we can use to call `reverse` in Django, and build these urls back. Remember in Pyramid that we had on the request object a function called [`route_url()`](http://docs.pylonsproject.org/projects/pyramid/en/latest/api/request.html#pyramid.request.Request.route_url).
+    * A third argument to `path()` is an optional argument called `name` that provides a handle that we can use to call `reverse` in Django, and build these urls back. Remember in Pyramid that we had on the request object a function called [`route_url()`](http://docs.pylonsproject.org/projects/pyramid/en/latest/api/request.html#pyramid.request.Request.route_url).
     * It took the name of a route, and optionally some arguments that matched up with the placeholders in that route.
     * It handed back a rendered URL that would go to that route.
     * Django has the same system, and it’s called `reverse`, and it allows you to build URLs given the name of a view and some arguments that would match up with the placeholders in that URL. Right now we don’t have any arguments, so we could just say `reverse.homepage` and we’d get back the url for the homepage view.
@@ -80,17 +80,17 @@ dealing with this.
   * or we can cast `'lending_library.views.home_view'` as a string. When we do this, Django will attempt to perform an import statement. As long as `views` is actually importable, this will work.
     * This is a nice way to avoid circular import problems. `urls.py` can be a dangerous place because you will import many view files here. Those views will import models. Those models may import something else that points to `urls.py`. It’s easy to accidentally build circular import problems. If you pass in the imports as strings, this problem can be avoided.
 
-_lending_library/lending_library/urls.py_
+_lending\_library/lending\_library/urls.py_
 
-    
+
 ```python
 ...
-from django.conf.urls import include, url
+from django.urls import include, path
 from django.contrib import admin
 
 urlpatterns = [
-    url(r'^admin/', include(admin.site.urls)),
-    url(r'^$', 'lending_library.views.home_view', name='homepage')
+    path('admin/', include(admin.site.urls)),
+    path('', 'lending_library.views.home_view', name='homepage')
 ]
 ...
 ```
@@ -98,16 +98,16 @@ urlpatterns = [
 I prefer to import at the top, so I’ll use that from here on. Our `urls.py`
 will look like this:
 
-    
-```python    
+
+```python
 ...
-from django.conf.urls import include, url
+from django.urls import include, url
 from django.contrib import admin
 from lending_library.views import home_view
 
 urlpatterns = [
-    url(r'^admin/', include(admin.site.urls)),
-    url(r'^$', home_view, name='homepage')
+    path('admin/', include(admin.site.urls)),
+    path('', home_view, name='homepage')
 ]
 ...
 ```
@@ -115,24 +115,24 @@ urlpatterns = [
 
 What does our view return at the moment?
 
-    
+
 ```python
 def home_view(request):
     """Home view callable, for the home page."""
     return "Hello World!"
 ```
-    
+
 
 A simple string. That’s not what Django is looking for. Remember, Django views
 must return something that can be used as a response. It needs headers and all
 the other things that make a proper HTTP response. So what Django provides us
 with is the
-[`HttpResponse`](https://docs.djangoproject.com/en/1.11/ref/request-response/#httpresponse-objects) object. Let’s add that to our view so that our
+[`HttpResponse`](https://docs.djangoproject.com/en/2.0/ref/request-response/#httpresponse-objects) object. Let’s add that to our view so that our
 function can use it:
 
 _lending_library/lending_library/views.py_
 
-    
+
 ```python
 from django.http import HttpResponse
 
@@ -141,7 +141,7 @@ def home_view(request):
     """Home view callable, for the home page."""
     return HttpResponse("Hello World!")
 ```
-    
+
 
 Now when the request comes in, we’ll build a response with this “Hello World!”
 string in it. We should be able to go and see our app return that in our
@@ -160,7 +160,7 @@ This is the basic shape that a Django view takes:
 You can build the response manually like our current `home_view()` function.
 You can also render out templates.
 
-### [Django Templating Engine](https://docs.djangoproject.com/en/1.11/topics/templates/)
+### [Django Templating Engine](https://docs.djangoproject.com/en/2.0/topics/templates/)
 
 Loading a template is something we want to do. We can create a template, or we
 can load one up from somewhere else. Let’s find where we can do that by
@@ -168,8 +168,8 @@ inspecting Django in the shell:
 
 `$ python manage.py shell`
 
-    
-    
+
+
     In [1]: from django import template
     In [2]: dir(template)
     Out[2]:
@@ -179,17 +179,17 @@ inspecting Django in the shell:
      'engines',
      'loader',
     ]
-    
+
 
 We want to further inspect the `loader` object
 
-    
-    
+
+
     In [3]: from django.template import loader
-    
+
     In [4]: dir(loader)
     Out[4]:
-    ['DeprecationInstanceCheck', 
+    ['DeprecationInstanceCheck',
      'LoaderOrigin',
      'Origin',
      'RemovedInDjango20Warning',
@@ -197,14 +197,14 @@ We want to further inspect the `loader` object
      'engines',
      'get_template',
     ]
-    
+
 
 Of the many classes and functions belonging to the `loader` object,
 `get_template` is what we’re looking for. Let’s use that in our `views.py`:
 
 _lending_library/lending_library/views.py_
 
-    
+
 ```python
 from django.http import HttpResponse
 from django.template import loader
@@ -215,7 +215,7 @@ def home_view(request):
     template = loader.get_template('lending_library/home.html')
     return HttpResponse("Hello World!")
 ```
-    
+
 
 This gets us to the idea of template loaders and where Django looks for
 templates. By default, Django comes with a system that allows it to look
@@ -224,7 +224,7 @@ will start looking for templates in that directory. If we want to have
 templates within the `lending_library` configuration root, we need to add
 `lending_library` to the list of `INSTALLED_APPS`.
 
-    
+
 ```python
     INSTALLED_APPS = [
         'django.contrib.admin',
@@ -237,13 +237,13 @@ templates within the `lending_library` configuration root, we need to add
         'lending_library' # <-- add this!
     ]
 ```
-    
+
 
 So, for example:
 
 _lending_library/lending_library/templates/lending_library/home.html_
 
-    
+
 ```html
 <!DOCTYPE html>
 <html>
@@ -266,7 +266,7 @@ breakpoint in there so we can inspect some things:
 
 _lending_library/lending_library/views.py_
 
-    
+
 ```python
 from django.http import HttpResponse
 from django.template import loader
@@ -279,11 +279,11 @@ def home_view(request):
     response_body = template.render()
     return HttpResponse(response_body)
 ```
-    
+
 
 When we attempt to browse to our homepage again, we’ll drop into our debugger:
 
-    
+
 
     -> template = loader.get_template('lending_library/home.html')
     (Pdb) n
@@ -291,21 +291,21 @@ When we attempt to browse to our homepage again, we’ll drop into our debugger:
     -> response_body = template.render()
     (Pdb) template
     <django.template.backends.django.Template object at 0x11252ed50>
-    
+
 
 So we have a template object. Let’s inspect it:
 
-    
-    
+
+
     (Pdb) dir(template)
     ['__class__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__sizeof__', '__str__', '__subclasshook__', '__weakref__', 'backend', 'origin', 'render', 'template']
-    
+
 
 You can see that `render` is one the the `template` methods. What happens
 next?
 
-    
-    
+
+
     (Pdb) l
       3
       4
@@ -322,7 +322,7 @@ next?
     (Pdb) response_body
     u'<!DOCTYPE html>\n<html>\n<head>\n  <title>Home Page></title>\n</head>\n<body>\n  <h1> Hello World!</h1>\n</body>\n</html>\n'
     (Pdb)
-    
+
 
 So we get a string that’s been rendered out into HTML.
 
@@ -330,13 +330,13 @@ The `render()` method is much like rendering in python.
 
 `response_body = template.render({'foo': 'bar'})`
 
-    
+
 ```jinja
 <body>
   <h1> Hello {{ foo }}!</h1>
 </body>
 ```
-    
+
 
 ![alt text](_images/hello_bar.png)
 
@@ -363,22 +363,22 @@ another url to our `urlpatterns`, and a new `test_view`.
 
 _lending_library/lending_library/urls.py_
 
-    
+
 ```python
 from lending_library.views import home_view, test_view
 ...
 urlpatterns = [
-    url(r'^admin/', include(admin.site.urls)),
-    url(r'^$', home_view, name='homepage'),
-    url(r'^(\d+)/$', test_view, name='testme'),
+    path('admin/', include(admin.site.urls)),
+    path('', home_view, name='homepage'),
+    path('<int:id>/', test_view, name='testme'),
 ]
 ...
 ```
-    
+
 
 _lending_library/lending_library/views.py_
 
-    
+
 ```python
 ...
 def test_view(request, foo):
@@ -391,7 +391,7 @@ def test_view(request, foo):
 It’s important to note that when changing around URLs, it’s a good idea to
 restart your server because they are often cached.
 
-So what does our new url match? `url(r'^(\d+)/$', ...` One or more numeric
+So what does our new url match? `path('<int:id>/', ...` One or more numeric
 digits. If we go to our browser now and navigate to this url:
 `http://localhost:8000/1/`, we will see that `1` rendered in our template:
 
@@ -401,13 +401,13 @@ You can see that any number put in that url end up as keyword arguments. If
 they don’t have a name to them, they end up as positional arguments. If we
 change up our urls to accept two positional arguments:
 
-`url(r'^(\d+)/(\w+)/$', test_view, name='testme'),`
+`path('<int:id>/', test_view, name='testme'),`
 
 And change our views so that `test_view` accepts `foo` and `bar`:
 
 _lending_library/lending_library/views.py_
 
-    
+
 ```python
 ...
 def test_view(request, foo, bar):
@@ -421,7 +421,7 @@ And accept our new variable `bar` into our template:
 
 _lending_library/lending_library/templates/lending_library/home.html_
 
-    
+
 ```jinja
 <!DOCTYPE html>
 <html>
@@ -444,20 +444,20 @@ positional arguments, we can do that:
 
 _lending_library/lending_library/urls.py_
 
-    
+
 ```python
 ...
 urlpatterns = [
-    url(r'^admin/', include(admin.site.urls)),
-    url(r'^$', home_view, name='homepage'),
-    url(r'^(?P<num>\d+)/(?P<name>\w+)/$', test_view, name='testme'),
+    path('admin/', include(admin.site.urls)),
+    path('', home_view, name='homepage'),
+    path('<int:id>/', test_view, name='testme'),
 ]
 ...
 ```
 
 _lending_library/lending_library/views.py_
 
-    
+
 ```python
 ...
 def test_view(request, num=0, name='balloons'):
@@ -480,18 +480,18 @@ This is the relationship between the urls and the patterns you set up for the
 urls, and the call signatures that you write for views. Placeholders will be
 passed as arguments to your views. This is very different from the Pyramid way
 of doing things. Those arguments can be keyword arguments if the placeholders
-you create for them are marked with the `(?P<...>)` syntax. This is standard
-python regex syntax.
+you create for them are marked with the `(<type:...>)` syntax. This is standard
+python syntax.
 
 _Question: So since we’re passing defaults into your keyword arguments, if we
 don’t pass them into the url, will it use the defaults?_
 
 Let’s try that. First we’ll change our url matching pattern to accept 0 or
-more characters in the `\w` part:
+more characters in the path:
 
-    
+
 ```python
-    url(r'^(?P<num>\d+)/(?P<name>\w*)/$', test_view, name='testme'),
+    path('<int:id>', test_view, name='testme'),
 ```
 
 ![alt text](_images/hello.png)
@@ -514,14 +514,14 @@ However, unless you make a special complex matching pattern or a second url
 that doesn’t use a keyword and points to the same view, it will not use the
 default parameter.
 
-### [Django Shortcuts](https://docs.djangoproject.com/en/1.11/topics/http/shortcuts/)
+### [Django Shortcuts](https://docs.djangoproject.com/en/2.0/topics/http/shortcuts/)
 
 This idea of loading a template, rendering a template, and handing back a
 response is so completely common, that Django has created a few shortcuts that
 mean exactly the same thing. The shortcuts are called
-[`render`](https://docs.djangoproject.com/en/1.11/topics/http/shortcuts/#render)
+[`render`](https://docs.djangoproject.com/en/2.0/topics/http/shortcuts/#render)
 and
-[`render_to_response`](https://docs.djangoproject.com/en/1.11/topics/http/shortcuts/#render-to-response).
+[`render_to_response`](https://docs.djangoproject.com/en/2.0/topics/http/shortcuts/#render-to-response).
 
 `render` takes a `request` and `template_name` as required arguments. There
 are a few optional arguments as well.
@@ -530,7 +530,7 @@ Let’s explore this for a moment. We need to re-write our `views.py`:
 
 _lending_library/lending_library/views.py_
 
-    
+
 ```python
 # from django.http import HttpResponse <-- replace this line
 # from django.template import loader  <-- and this line
@@ -557,7 +557,7 @@ We can do the same thing to our `test_view`:
 
 _lending_library/lending_library/views.py_
 
-    
+
 ```python
 ...
 def test_view(request, num=0, name='baloons'):
@@ -570,7 +570,7 @@ We need to also change our `home.html` to work with our `test_view`:
 
 _lending_library/lending_library/templates/lending_library/home.html_
 
-    
+
 ```jinja
 <!DOCTYPE html>
 <html>
@@ -588,7 +588,7 @@ And our `home_view` needs adjusting now too:
 
 _lending_library/lending_library/views.py_
 
-    
+
 ```python
 def home_view(request):
     """Home view callable, for the home page."""
@@ -600,7 +600,7 @@ And we’re back to our “Hello Pancakes”
 
 ![alt text](_images/hello_pancakes_123.png)
 
-### [`render_to_response`](https://docs.djangoproject.com/en/1.11/topics/http/shortcuts/#render-to-response)
+### [`render_to_response`](https://docs.djangoproject.com/en/2.0/topics/http/shortcuts/#render-to-response)
 
 Another thing we can do is `render_to_response`. There is a difference between
 these two. From the docs: “This function preceded the introduction of
