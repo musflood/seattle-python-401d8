@@ -1,5 +1,14 @@
 # ![cf](http://i.imgur.com/7v5ASc8.png) Class 27: Django Imager: Registration, Login and Home
 
+## Daily Plan
+- Notes
+    - Anything top of mind?
+
+- Code Review
+- Django Registration
+- Django Templating
+- Lab Preview
+
 ## Learning Objectives
 - Students will learn about the glorious nature of iterators and generators in Python.
 - Students will understanding function-based views in Django, and how they hook up to Django’s URL configuration.

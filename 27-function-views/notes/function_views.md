@@ -1,7 +1,6 @@
 # Django URLs, Views and Templates
 
-In this lecture we will investigate the basic outline of a Django
-request/response cycle.
+In this lecture we will investigate the basic outline of a Django request/response cycle.
 
 * * *
 
@@ -13,52 +12,24 @@ Views are very similar in Django as to how they are in Pyramid
   * They take a request as their first argument
   * Rather than returning a dictionary for some other renderer to deal with like Pyramid, Django returns a response object which includes the rendered template or text.
 
-One other difference is that in Pyramid, when you get a request in and a view
-is called, if there are bits of the URL that got matched by the route that led
-to that particular view, where do those show up? They show up in the aspect of
-the request called the `matchdict`. That contains the pieces of the URL that
-got matched by the route on its way to matching up with the view.
+One other difference is that in Pyramid, when you get a request in and a view is called, if there are bits of the URL that got matched by the route that led to that particular view, where do those show up? They show up in the aspect of the request called the `matchdict`. That contains the pieces of the URL that got matched by the route on its way to matching up with the view.
 
-In Django this happens in a different way. Elements from the request path that
-are matched by a pattern end up getting passed off to you as arguments to your
-view callable.
+In Django this happens in a different way. Elements from the request path that are matched by a pattern end up getting passed off to you as arguments to your view callable.
 
-What does it mean to be callable in python? It means it’s an object that can
-be called. If it’s a class, it has a `__call__()` method, if it’s a function
-it automatically gets the `__call__()` method. Anything with those `()`
-parenthesis at the end is a callable in Python.
+What does it mean to be callable in python? It means it’s an object that can be called. If it’s a class, it has a `__call__()` method, if it’s a function it automatically gets the `__call__()` method. Anything with those `()` parenthesis at the end is a callable in Python.
 
-Django has moved largely to what is called “Class Based Views”. You define a
-class and that class has a bunch of methods, and those methods interact, and
-at the end they hand back a response object. You never actually define the
-call method because when you create a class based view, you inherit from one
-of Django’s built in base versions. At the root of the inheritance tree there
-is an implementation of a `__call__()` method that works in pretty much any
-situation.
+Django has moved largely to what is called “Class Based Views”. You define a class and that class has a bunch of methods, and those methods interact, and at the end they hand back a response object. You never actually define the call method because when you create a class based view, you inherit from one of Django’s built in base versions. At the root of the inheritance tree there is an implementation of a `__call__()` method that works in pretty much any situation.
 
-We’ll talk for a few minutes here though going over function views, which is
-the old way Django used to work. The reason for doing this because we want to
-deconstruct how a view operates at its most generic level. Let’s think for a
-moment here how we will wire up a view in Django.
+We’ll talk for a few minutes here though going over function views, which is the old way Django used to work. The reason for doing this because we want to deconstruct how a view operates at its most generic level. Let’s think for a moment here how we will wire up a view in Django.
 
-What’s the starting point for getting from an incoming request to a piece of
-code that will answer that request? Where did we begin in Pyramid? We began
-with a route. A route is the path that a request takes to a view. In Django
-what do we call routes? URLs. We’ve seen in our Django project in our site
-directory our `urls.py` file. We set up a static URL there to point to our
-media directory.
+What’s the starting point for getting from an incoming request to a piece of code that will answer that request? Where did we begin in Pyramid? We began with a route. A route is the path that a request takes to a view. In Django what do we call routes? URLs. We’ve seen in our Django project in our site directory our `urls.py` file. We set up a static URL there to point to our media directory.
 
-Django creates these things called `urlpatterns`. These are basically just
-lists of calls to the `path` function. `path()` comes from `django.urls`
-and it is responsible for wiring together 2 things:
+Django creates these things called `urlpatterns`. These are basically just lists of calls to the `path` function. `path()` comes from `django.urls` and it is responsible for wiring together 2 things:
 
   1. The pattern that is being used to match an incoming request.
   2. The view that will be pointed at.
 
-We don’t have to point only to views, we can also point at other url confs.
-Let’s start by pointing at a view though. Let’s start with a new `url`, and
-add a regular expression. We should always use a raw string when doing regex
-to avoid having to escape escapes.
+We don’t have to point only to views, we can also point at other url confs. Let’s start by pointing at a view though. Let’s start with a new `url`, and add a regular expression. We should always use a raw string when doing regex to avoid having to escape escapes.
 
   * `path('', views.home_view, name='homepage')`
     * This regex matches only a home directory “/”. The “^” and “$” starting and ending the route string signify that. (See regex documentation for more info.)
@@ -68,12 +39,7 @@ to avoid having to escape escapes.
     * It handed back a rendered URL that would go to that route.
     * Django has the same system, and it’s called `reverse`, and it allows you to build URLs given the name of a view and some arguments that would match up with the placeholders in that URL. Right now we don’t have any arguments, so we could just say `reverse.homepage` and we’d get back the url for the homepage view.
 
-We’ve said now that we have a file called `views` and that it contains a
-function called `home_view()`. Does that exist at the moment? No. We also
-should have a linter error showing on our `views` part of
-`lending_library.views.home_view`. That’s telling us that we don’t have
-`views` imported as a symbol in our current namespace. Django has two ways of
-dealing with this.
+We’ve said now that we have a file called `views` and that it contains a function called `home_view()`. Does that exist at the moment? No. We also should have a linter error showing on our `views` part of `lending_library.views.home_view`. That’s telling us that we don’t have `views` imported as a symbol in our current namespace. Django has two ways of dealing with this.
 
   * We can either `import views`
   * `from lending_library import views` to specifically pull `views` from a particular app
@@ -94,11 +60,7 @@ urlpatterns = [
 ]
 ...
 ```
-
-I prefer to import at the top, so I’ll use that from here on. Our `urls.py`
-will look like this:
-
-
+I prefer to import at the top, so I’ll use that from here on. Our `urls.py` will look like this:
 ```python
 ...
 from django.urls import include, url
@@ -111,27 +73,16 @@ urlpatterns = [
 ]
 ...
 ```
-
-
 What does our view return at the moment?
-
-
 ```python
 def home_view(request):
     """Home view callable, for the home page."""
     return "Hello World!"
 ```
 
-
-A simple string. That’s not what Django is looking for. Remember, Django views
-must return something that can be used as a response. It needs headers and all
-the other things that make a proper HTTP response. So what Django provides us
-with is the
-[`HttpResponse`](https://docs.djangoproject.com/en/2.0/ref/request-response/#httpresponse-objects) object. Let’s add that to our view so that our
-function can use it:
+A simple string. That’s not what Django is looking for. Remember, Django views must return something that can be used as a response. It needs headers and all the other things that make a proper HTTP response. So what Django provides us with is the [`HttpResponse`](https://docs.djangoproject.com/en/2.0/ref/request-response/#httpresponse-objects) object. Let’s add that to our view so that our function can use it:
 
 _lending_library/lending_library/views.py_
-
 
 ```python
 from django.http import HttpResponse
@@ -143,9 +94,7 @@ def home_view(request):
 ```
 
 
-Now when the request comes in, we’ll build a response with this “Hello World!”
-string in it. We should be able to go and see our app return that in our
-browser.
+Now when the request comes in, we’ll build a response with this “Hello World!” string in it. We should be able to go and see our app return that in our browser.
 
 Let’s start up our testing server and browse to `http://localhost:8000/`:
 
@@ -157,18 +106,13 @@ This is the basic shape that a Django view takes:
   * You do some stuff with it
   * And then you return something that functions as a response.
 
-You can build the response manually like our current `home_view()` function.
-You can also render out templates.
+You can build the response manually like our current `home_view()` function. You can also render out templates.
 
 ### [Django Templating Engine](https://docs.djangoproject.com/en/2.0/topics/templates/)
 
-Loading a template is something we want to do. We can create a template, or we
-can load one up from somewhere else. Let’s find where we can do that by
-inspecting Django in the shell:
+Loading a template is something we want to do. We can create a template, or we can load one up from somewhere else. Let’s find where we can do that by inspecting Django in the shell:
 
 `$ python manage.py shell`
-
-
 
     In [1]: from django import template
     In [2]: dir(template)
@@ -182,8 +126,6 @@ inspecting Django in the shell:
 
 
 We want to further inspect the `loader` object
-
-
 
     In [3]: from django.template import loader
 
@@ -199,11 +141,9 @@ We want to further inspect the `loader` object
     ]
 
 
-Of the many classes and functions belonging to the `loader` object,
-`get_template` is what we’re looking for. Let’s use that in our `views.py`:
+Of the many classes and functions belonging to the `loader` object, `get_template` is what we’re looking for. Let’s use that in our `views.py`:
 
 _lending_library/lending_library/views.py_
-
 
 ```python
 from django.http import HttpResponse
@@ -216,13 +156,7 @@ def home_view(request):
     return HttpResponse("Hello World!")
 ```
 
-
-This gets us to the idea of template loaders and where Django looks for
-templates. By default, Django comes with a system that allows it to look
-inside any installed app for a directory that’s called `templates`. And it
-will start looking for templates in that directory. If we want to have
-templates within the `lending_library` configuration root, we need to add
-`lending_library` to the list of `INSTALLED_APPS`.
+This gets us to the idea of template loaders and where Django looks for templates. By default, Django comes with a system that allows it to look inside any installed app for a directory that’s called `templates`. And it will start looking for templates in that directory. If we want to have templates within the `lending_library` configuration root, we need to add `lending_library` to the list of `INSTALLED_APPS`.
 
 
 ```python
@@ -256,13 +190,9 @@ _lending_library/lending_library/templates/lending_library/home.html_
 </html>
 ```
 
-We now have an html file that lives in a `templates` directory inside one of
-our apps. This is how Django works by default. If we run our server, we should
-find that when the request comes in, our `home_view` function receives it and
-tries to load the template.
+We now have an html file that lives in a `templates` directory inside one of our apps. This is how Django works by default. If we run our server, we should find that when the request comes in, our `home_view` function receives it and tries to load the template.
 
-We’ll modify our `views.py` file to handle templates now, and drop a
-breakpoint in there so we can inspect some things:
+We’ll modify our `views.py` file to handle templates now, and drop a breakpoint in there so we can inspect some things:
 
 _lending_library/lending_library/views.py_
 
@@ -283,8 +213,6 @@ def home_view(request):
 
 When we attempt to browse to our homepage again, we’ll drop into our debugger:
 
-
-
     -> template = loader.get_template('lending_library/home.html')
     (Pdb) n
     > .../lending_library/lending_library/views.py(8)home_view()
@@ -292,19 +220,12 @@ When we attempt to browse to our homepage again, we’ll drop into our debugger:
     (Pdb) template
     <django.template.backends.django.Template object at 0x11252ed50>
 
-
 So we have a template object. Let’s inspect it:
-
-
 
     (Pdb) dir(template)
     ['__class__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__sizeof__', '__str__', '__subclasshook__', '__weakref__', 'backend', 'origin', 'render', 'template']
 
-
-You can see that `render` is one the the `template` methods. What happens
-next?
-
-
+You can see that `render` is one the the `template` methods. What happens next?
 
     (Pdb) l
       3
@@ -331,7 +252,7 @@ The `render()` method is much like rendering in python.
 `response_body = template.render({'foo': 'bar'})`
 
 
-```jinja
+```html
 <body>
   <h1> Hello {{ foo }}!</h1>
 </body>
@@ -340,13 +261,9 @@ The `render()` method is much like rendering in python.
 
 ![alt text](_images/hello_bar.png)
 
-Django’s templating language looks just like Jinja2, and in fact in later
-versions of Django (>=1.8), you can specify what templating engine you want to
-use, and it can be Jinja2.
+Django’s templating language looks just like Jinja2, and in fact in later versions of Django (>=1.8), you can specify what templating engine you want to use, and it can be Jinja2.
 
-When using Django, you are encouraged to try and use Django’s templating
-language because it tries to keep as much processing of values away from the
-templates as possible, and instead has processing done in python.
+When using Django, you are encouraged to try and use Django’s templating language because it tries to keep as much processing of values away from the templates as possible, and instead has processing done in python.
 
 So this kind of a pattern here:
 
@@ -355,11 +272,9 @@ So this kind of a pattern here:
   3. we render that template and pass some kind of a context to it
   4. we use the rendered body of that and hand it back as a result of our call
 
-This is a very common thing in Django. At the root level, this is always the
-pattern.
+This is a very common thing in Django. At the root level, this is always the pattern.
 
-We’ll talk for a moment here about ways this pattern might change. Let’s add
-another url to our `urlpatterns`, and a new `test_view`.
+We’ll talk for a moment here about ways this pattern might change. Let’s add another url to our `urlpatterns`, and a new `test_view`.
 
 _lending_library/lending_library/urls.py_
 
@@ -388,18 +303,13 @@ def test_view(request, foo):
     return HttpResponse(response_body)
 ```
 
-It’s important to note that when changing around URLs, it’s a good idea to
-restart your server because they are often cached.
+It’s important to note that when changing around URLs, it’s a good idea to restart your server because they are often cached.
 
-So what does our new url match? `path('<int:id>/', ...` One or more numeric
-digits. If we go to our browser now and navigate to this url:
-`http://localhost:8000/1/`, we will see that `1` rendered in our template:
+So what does our new url match? `path('<int:id>/', ...` One or more numeric digits. If we go to our browser now and navigate to this url: `http://localhost:8000/1/`, we will see that `1` rendered in our template:
 
 ![alt text](_images/hello_1.png)
 
-You can see that any number put in that url end up as keyword arguments. If
-they don’t have a name to them, they end up as positional arguments. If we
-change up our urls to accept two positional arguments:
+You can see that any number put in that url end up as keyword arguments. If they don’t have a name to them, they end up as positional arguments. If we change up our urls to accept two positional arguments:
 
 `path('<int:id>/', test_view, name='testme'),`
 
@@ -439,8 +349,7 @@ Now our page renders like this:
 
 ![alt text](_images/hello_123.png)
 
-If we decide to change our minds and use keyword arguments instead of
-positional arguments, we can do that:
+If we decide to change our minds and use keyword arguments instead of positional arguments, we can do that:
 
 _lending_library/lending_library/urls.py_
 
@@ -467,8 +376,7 @@ def test_view(request, num=0, name='balloons'):
     return HttpResponse(response_body)
 ```
 
-So now we can change around the order in which the arguments come in because
-they are keywords:
+So now we can change around the order in which the arguments come in because they are keywords:
 
 `def test_view(request, name='balloons', num=0):`
 
@@ -476,18 +384,11 @@ they are keywords:
 
 ![alt text](_images/hello_pancakes_123.png)
 
-This is the relationship between the urls and the patterns you set up for the
-urls, and the call signatures that you write for views. Placeholders will be
-passed as arguments to your views. This is very different from the Pyramid way
-of doing things. Those arguments can be keyword arguments if the placeholders
-you create for them are marked with the `(<type:...>)` syntax. This is standard
-python syntax.
+This is the relationship between the urls and the patterns you set up for the urls, and the call signatures that you write for views. Placeholders will be passed as arguments to your views. This is very different from the Pyramid way of doing things. Those arguments can be keyword arguments if the placeholders you create for them are marked with the `(<type:...>)` syntax. This is standard python syntax.
 
-_Question: So since we’re passing defaults into your keyword arguments, if we
-don’t pass them into the url, will it use the defaults?_
+_Question: So since we’re passing defaults into your keyword arguments, if we don’t pass them into the url, will it use the defaults?_
 
-Let’s try that. First we’ll change our url matching pattern to accept 0 or
-more characters in the path:
+Let’s try that. First we’ll change our url matching pattern to accept 0 or more characters in the path:
 
 
 ```python
@@ -496,35 +397,17 @@ more characters in the path:
 
 ![alt text](_images/hello.png)
 
-So it didn’t pick up our default value. The fact that we provided them in our
-view is a bit of a red herring. If the url is going to match, some value will
-be there and will be passed it. But this is how you make optional keyword
-arguments - by providing them with a default value.
+So it didn’t pick up our default value. The fact that we provided them in our view is a bit of a red herring. If the url is going to match, some value will be there and will be passed it. But this is how you make optional keyword arguments - by providing them with a default value.
 
-It is possible to make Django url patterns that have fully optional chunks in
-them that might or might not be present. It’s not very easy to do. It takes
-some complex regex patterns. It may not be the best way of doing things as
-well. Sometimes it’s better to just make more than one url pattern point to
-the same view. We can make a 2nd pattern here that only contains the `<num>`
-matching part, and then our default optional keyword would actually pass it’s
-value through.
+It is possible to make Django url patterns that have fully optional chunks in them that might or might not be present. It’s not very easy to do. It takes some complex regex patterns. It may not be the best way of doing things as well. Sometimes it’s better to just make more than one url pattern point to the same view. We can make a 2nd pattern here that only contains the `<num>` matching part, and then our default optional keyword would actually pass it’s value through.
 
-You must put a default value there in order for it to be a keyword parameter.
-However, unless you make a special complex matching pattern or a second url
-that doesn’t use a keyword and points to the same view, it will not use the
-default parameter.
+You must put a default value there in order for it to be a keyword parameter. However, unless you make a special complex matching pattern or a second url that doesn’t use a keyword and points to the same view, it will not use the default parameter.
 
 ### [Django Shortcuts](https://docs.djangoproject.com/en/2.0/topics/http/shortcuts/)
 
-This idea of loading a template, rendering a template, and handing back a
-response is so completely common, that Django has created a few shortcuts that
-mean exactly the same thing. The shortcuts are called
-[`render`](https://docs.djangoproject.com/en/2.0/topics/http/shortcuts/#render)
-and
-[`render_to_response`](https://docs.djangoproject.com/en/2.0/topics/http/shortcuts/#render-to-response).
+This idea of loading a template, rendering a template, and handing back a response is so completely common, that Django has created a few shortcuts that mean exactly the same thing. The shortcuts are called [`render`](https://docs.djangoproject.com/en/2.0/topics/http/shortcuts/#render) and [`render_to_response`](https://docs.djangoproject.com/en/2.0/topics/http/shortcuts/#render-to-response).
 
-`render` takes a `request` and `template_name` as required arguments. There
-are a few optional arguments as well.
+`render` takes a `request` and `template_name` as required arguments. There are a few optional arguments as well.
 
 Let’s explore this for a moment. We need to re-write our `views.py`:
 
@@ -544,8 +427,7 @@ def home_view(request):
 ...
 ```
 
-So our shortcut `render` takes the `request` as an argument, the template
-(‘home.html’), and our hard-coded context.
+So our shortcut `render` takes the `request` as an argument, the template (‘home.html’), and our hard-coded context.
 
 Let’s go back to our homepage and see what it looks like now:
 
@@ -602,13 +484,7 @@ And we’re back to our “Hello Pancakes”
 
 ### [`render_to_response`](https://docs.djangoproject.com/en/2.0/topics/http/shortcuts/#render-to-response)
 
-Another thing we can do is `render_to_response`. There is a difference between
-these two. From the docs: “This function preceded the introduction of
-`render()` and works similarly except that it doesn’t make the request
-available in the response. It’s not recommended and is likely to be deprecated
-in the future.”
+Another thing we can do is `render_to_response`. There is a difference between these two. From the docs: “This function preceded the introduction of `render()` and works similarly except that it doesn’t make the request available in the response. It’s not recommended and is likely to be deprecated in the future.”
 
-There’s really not a good reason to use `render_to_response` unless you have a
-very special use case. You may run into `render_to_response` in legacy code.
-We will be using `render()` instead of `render_to_response()`.
+There’s really not a good reason to use `render_to_response` unless you have a very special use case. You may run into `render_to_response` in legacy code. We will be using `render()` instead of `render_to_response()`.
 
